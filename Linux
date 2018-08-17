@@ -1,0 +1,55 @@
+
+	1. linux
+
+application->system call->kernel->hardware
+启动过程：
+内核引导：上电后按bios设置启动；操作系统接管后读取/boot下的内核文件
+运行intit：init进程是所有系统进程的起点，是必须的基础
+系统初始化：在init的配置文件中有这么一行： si::sysinit:/etc/rc.d/rc.sysinit　它调用执行了/etc/rc.d/rc.sysinit，而rc.sysinit是一个bash shell的脚本，它主要是完成一些系统初始化的工作，rc.sysinit是每一个运行级别都要首先运行的重要脚本。
+它主要完成的工作有：激活交换分区，检查磁盘，加载硬件模块以及其它一些需要优先执行任务
+linux关机：正确的关机流程为：sync > shutdown > reboot > halt
+关机的命令有 shutdown –h now halt poweroff 和 init 0 , 重启系统的命令有 shutdown –r now reboot init 6
+
+
+2、目录和文件
+树状目录结构：
+
+tips：root密码忘记，boot 编辑（e）lable= single ,进入单用户模式使用passwd修改密码
+
+3、文件基本属性
+chmod
+u
+g
+o
+a
++(加入)
+-(除去)
+=(设定)
+r
+w
+x
+文件或目录
+
+
+4、文件与目录管理
+
+路径的写法，不是由 / 写起，例如由 /usr/share/doc 要到 /usr/share/man 底下时，可以写成： cd ../man 这就是相对路径
+pwd -P ：显示出确实的路径，而非使用连结 (link) 路径
+mkdir -p test1/test2/test3 帮助你直接将所需要的目录(包含上一级目录)递归创建起来; -m 配置文件的权限
+cp -i ~/.bashrc /tmp/bashrc 在覆盖时会先询问动作
+rm -rf xx 会递归删除，注意使用
+
+
+文件内容查看
+
+cat  由第一行开始显示文件内容
+tac  从最后一行开始显示，可以看出 tac 是 cat 的倒着写
+nl   显示的时候，顺道输出行号！
+more 一页一页的显示文件内容
+less 与 more 类似，但是比 more 更好的是，可以往前翻页！
+head 只看头几行
+tail 只看结尾几行
+
+
+
+
