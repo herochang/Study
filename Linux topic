@@ -1,0 +1,242 @@
+1、ssh免密码登陆?
+ssh-keygen -t rsa //生成秘钥文件
+id_rsa为私钥文件，id_rsa.pub为公钥文件
+ssh-copy-id -i ~/.ssh/id_rsa.pub dss@10.164.194.42 //cp到远程server
+cisco telnet免密码：username no password in vty cfg??
+
+2、Tcpdump –w 等参数？
+-i 接口 
+-w 保存成文件
+-s<数据包大小> 设置每个数据包的大小
+-vv 更详细显示指令执行过程
+-c<数据包数目> 收到指定的数据包数目后，就停止
+-p 不让网络界面进入混杂模式
+
+3、	Vi 删除行和删除几行？
+x或X：删除一个字符，x删除光标后的，而X删除光标前的；
+D：删除从当前光标到光标所在行尾的全部字符；
+多行删除 ，：1,10d
+dd：删除光标行正行内容；
+ndd：删除当前行及其后n-1行；
+d^ 删除至行首
+dG 删除到文档结尾处
+d1G 删至文档首部
+
+4、	Linux改变文件权限，属主？
+chmod 755 wch.txt
+chgrp - R book /opt/local /book
+chown - R yusi.users /demo
+
+5、linux查找最近五分钟修改过的文件？
+find   -name april*                     在当前目录下查找以april开始的文件
+find   -name   april*   fprint file        在当前目录下查找以april开始的文件，并把结
+find   -name ap* -o -name may*   查找以ap或may开头的文件
+find   /mnt   -name tom.txt   -ftype vfat   在/mnt下查找名称为tom.txt且文件系统类型
+find   /mnt   -name t.txt ! -ftype vfat   在/mnt下查找名称为tom.txt且文件系统类型
+find   /tmp   -name wa* -type l            在/tmp下查找名为wa开头且类型为符号链
+find   /home   -mtime   -2                 在/home下查最近两天内改动过的文件
+find /home    -atime -1                  查1天之内被存取过的文件
+find /home -mmin    +60                  在/home下查60分钟前改动过的文件
+find /home   -amin   +30                  查最近30分钟前被存取过的文件
+find /home   -newer   tmp.txt             在/home下查更新时间比tmp.
+
+
+6、查看ubuntu版本号？
+方法一：cat /etc/issue
+返回结果：Ubuntu 6.06.2 LTS \n \l
+
+方法二：cat /etc/lsb-release
+返回结果：
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=6.06
+DISTRIB_CODENAME=dapper
+DISTRIB_DESCRIPTION="Ubuntu 6.06.2 LTS"
+
+7、查看内核版本号？
+cat /proc/version 
+返回结果：
+Linux version 2.6.15-51-386 (buildd@palmer) (gcc version 4.0.3 (Ubuntu 4.0.3-1ubuntu5)) #1 PREEMPT Tue Oct 23 21:42:16 UTC 2007
+
+uname -a
+返回结果：
+Linux jpsiteserver 2.6.15-51-386 #1 PREEMPT Tue Oct 23 21:42:16 UTC 2007 i686 GNU/Linux 
+
+
+
+常用命令
+文件和目录 
+cd /home 进入 '/ home' 目录' 
+cd .. 返回上一级目录 
+cd ../.. 返回上两级目录 
+cd 进入个人的主目录 
+cd ~user1 进入个人的主目录 
+cd - 返回上次所在的目录 
+pwd 显示工作路径 
+ls 查看目录中的文件 
+ls -F 查看目录中的文件 
+ls -l 显示文件和目录的详细资料 
+ls -a 显示隐藏文件 
+
+arch 显示机器的处理器架构(1) 
+uname -m 显示机器的处理器架构(2) 
+uname -r 显示正在使用的内核版本 
+
+cat /proc/cpuinfo 显示CPU info的信息 
+cat /proc/interrupts 显示中断 
+cat /proc/meminfo 校验内存使用 
+cat /proc/swaps 显示哪些swap被使用 
+cat /proc/version 显示内核的版本
+
+df -h 显示已经挂载的分区列表 
+ls -lSr |more 以尺寸大小排列文件和目录 
+du -sh dir1 估算目录 'dir1' 已经使用的磁盘空间' 
+du -sk * | sort -rn 以容量大小为依据依次显示文件和目录的大小 
+tar -cvf archive.tar file1 创建一个非压缩的 tarball 
+tar -cvf archive.tar file1 file2 dir1 创建一个包含了 'file1', 'file2' 以及 'dir1'的档案文件 
+tar -tf archive.tar 显示一个包中的内容 
+tar -xvf archive.tar 释放一个包 
+tar -xvf archive.tar -C /tmp 将压缩包释放到 /tmp目录下 
+
+
+APT 软件工具 (Debian, Ubuntu 以及类似系统) 
+dpkg -i package.deb 安装/更新一个 deb 包 
+dpkg -r package_name 从系统删除一个 deb 包 
+dpkg -l 显示系统中所有已经安装的 deb 包 
+
+
+apt-get install package_name 安装/更新一个 deb 包 
+apt-cdrom install package_name 从光盘安装/更新一个 deb 包 
+apt-get update 升级列表中的软件包 
+apt-get upgrade 升级所有已安装的软件 
+apt-get remove package_name 从系统删除一个deb包 
+apt-get check 确认依赖的软件仓库正确
+
+查看文件内容 
+cat file1 从第一个字节开始正向查看文件的内容 
+tac file1 从最后一行开始反向查看一个文件的内容 
+more file1 查看一个长文件的内容 
+less file1 类似于 'more' 命令，但是它允许在文件中和正向操作一样的反向操作 
+head -2 file1 查看一个文件的前两行 
+tail -2 file1 查看一个文件的最后两行 
+tail -f /var/log/messages 实时查看被添加到一个文件中的内容
+
+文本处理
+grep Aug /var/log/messages 在文件 '/var/log/messages'中查找关键词"Aug" 
+grep ^Aug /var/log/messages 在文件 '/var/log/messages'中查找以"Aug"开始的词汇 
+grep [0-9] /var/log/messages 选择 '/var/log/messages' 文件中所有包含数字的行 
+grep Aug -R /var/log/* 在目录 '/var/log' 及随后的目录中搜索字符串"Aug" 
+sed 's/stringa1/stringa2/g' example.txt 将example.txt文件中的 "string1" 替换成 "string2" 
+sed '/^$/d' example.txt 从example.txt文件中删除所有空白行 
+sed '/ *#/d; /^$/d' example.txt 从example.txt文件中删除所有注释和空白行 
+echo 'esempio' | tr '[:lower:]' '[:upper:]' 合并上下单元格内容 
+sed -e '1d' result.txt 从文件example.txt 中排除第一行 
+sed -n '/stringa1/p' 查看只包含词汇 "string1"的行 
+sed -e 's/ *$//' example.txt 删除每一行最后的空白字符 
+sed -e 's/stringa1//g' example.txt 从文档中只删除词汇 "string1" 并保留剩余全部 
+sed -n '1,5p;5q' example.txt 查看从第一行到第5行内容 
+sed -n '5p;5q' example.txt 查看第5行 
+sed -e 's/00*/0/g' example.txt 用单个零替换多个零 
+cat -n file1 标示文件的行数 
+cat example.txt | awk 'NR%2==1' 删除example.txt文件中的所有偶数行 
+echo a b c | awk '{print $1}' 查看一行第一栏 
+echo a b c | awk '{print $1,$3}' 查看一行的第一和第三栏 
+
+备份 
+dump -0aj -f /tmp/home0.bak /home 制作一个 '/home' 目录的完整备份 
+dump -1aj -f /tmp/home0.bak /home 制作一个 '/home' 目录的交互式备份 
+restore -if /tmp/home0.bak 还原一个交互式备份 
+rsync -rogpav --delete /home /tmp 同步两边的目录 
+rsync -rogpav -e ssh --delete /home ip_address:/tmp 通过SSH通道rsync 
+rsync -az -e ssh --delete ip_addr:/home/public /home/local 通过ssh和压缩将一个远程目录同步到本地目录 
+rsync -az -e ssh --delete /home/local ip_addr:/home/public 通过ssh和压缩将本地目录同步到远程目录 
+
+top命令可以实时动态地查看系统的整体运行情况，是一个综合了多方信息监测系统性能和运行信息的实用工具。通过top命令所提供的互动式界面，用热键可以管理
+
+
+pwd                     //获取当前路径
+~                       //当前用户主目录
+cd -                    //返回上次所在的目录
+cd ..                   //上一级
+cd ~                    //home目录（/开头是绝对路径；.开头是相对路径）
+mkdir mydir             //新建目录mydir
+mkdir -p father/son/grandson   //建多级目录
+cp test(此处可为路径) father/son/grandson    //将当前目录下的test复制到grandson中
+rm                      //删除文件
+mv  旧名 新名            //重命名
+remove 'y/a-z/A-Z/' *.c  //删文件
+cat test                //查看文件test;-n显示行号
+file test               //查看文件类型
+ls                         //查看当前目录下的文件
+ls -l 文件名称              //查看详细信息（文件夹将-l改为-ld）
+Useradd 创建一个新的用户 
+Groupadd 组名 创建一个新的组 
+Passwd 用户名 为用户创建密码 
+Passwd -d用户名 删除用户密码也能登陆 
+Passwd -S用户名 查询账号密码 
+Usermod -l 新用户名 老用户名 为用户改名 
+Userdel–r 用户名 删除用户一切 
+tar -c 创建包 –x 释放包 -v 显示命令过程 –z 代表压缩包 
+tar –cvf benet.tar /home/benet 把/home/benet目录打包 
+tar –zcvf benet.tar.gz /mnt 把目录打包并压缩 
+tar –zxvf benet.tar.gz 压缩包的文件解压恢复 
+tar –jxvf benet.tar.bz2 解压缩 
+make 编译 
+make install 安装编译好的源码包 
+reboot Init 6 重启LINUX系统 
+Halt Init 0 Shutdown –h now 关闭LINUX系统 
+uname -a 查看内核版本 
+cat /etc/issue 查看ubuntu版本 
+lsusb 查看usb设备 
+sudo ethtool eth0 查看网卡状态 
+cat /proc/cpuinfo 查看cpu信息 
+lshw 查看当前硬件信息 
+sudo fdisk -l 查看磁盘信息 
+df -h 查看硬盘剩余空间 
+free -m 查看当前的内存使用情况 
+ps -A 查看当前有哪些进程
+配置IP：vim /etc/network/interfaces eth0:外 eth1:内 DNS(114.114.114.114 8.8.8.8)
+DNS：vim /etc/resolv.conf
+重启： /etc/init.d/networking restart
+允许SSH：vi /etc/ssh/sshd-config
+重启SSH： /etc/init.d/ssh restart
+
+
+修改文件权限
+sudo chmod 600 ××× （只有所有者有读和写的权限）
+sudo chmod 644 ××× （所有者有读和写的权限，组用户只有读的权限）
+sudo chmod 700 ××× （只有所有者有读和写以及执行的权限）
+sudo chmod 666 ××× （每个人都有读和写的权限）
+sudo chmod 777 ××× （每个人都有读和写以及执行的权限）
+
+通用格式:find pathname -options [-print -exec -ok]
+例子:
+find / -name filename 在根目录里面搜索文件名为filename的文件
+find /etc -name *s*在目录里面搜索带有s的文件
+find /etc -name *S 在目录里面搜索以s结尾的文件
+find /etc -name s*在目录里面搜索以s开头的文件
+find / -amin -10在系统中搜索最后１０分钟访问的文件
+find / -atime -2查找在系统中最后４８小时访问的文件
+find / -empty 查找在系统中为空的文件或者是文件夹
+find / -group groupname 查找在系统中属于groupname的文件
+find / -mmin -5查找在系统中最后５分钟修改过的文件
+find / -mtime -1查找在系统中最后２４小时修改过的文件
+find /－nouser查找在系统中属于费用户的文件
+find / -user username 查找在系统中属于username的文件
+find / -ctime -1查找在系统中最后２４小时被改变状态的文件
+find / -fstype type查找在系统中文件类型为？的文件
+find / -size -1000k
+find /tmp -size +10000c -and -mtime +2 　　#在/tmp目录下查找大于10000字节并在最后2分钟内修改的文件
+   　　    (2)find / -user fred -or -user george 　　#在/目录下查找用户是fred或者george的文件文件
+   　　    (3)find /tmp ! -user panda　　#在/tmp目录中查找所有不属于panda用户的文
+
+(1)grep 'test' d*　　#显示所有以d开头的文件中包含 test的行
+　　(2)grep ‘test’ aa bb cc 　　 #显示在aa，bb，cc文件中包含test的行
+　　(3)grep ‘[a-z]\{5\}’ aa 　　#显示所有包含每行字符串至少有5个连续小写字符的字符串的行
+　　(4)grep magic /usr/src　　#显示/usr/src目录下的文件(不含子目录)包含magic的行
+　　(5)grep -r magic /usr/src　　#显示/usr/src目录下的文件(包含子目录)包含magic的行
+　　(6)grep -w pattern files ：只匹配整个单词，而不是字符串的一部分(如匹配’magic’，而不是’magical’)，
+
+
+
+
+
